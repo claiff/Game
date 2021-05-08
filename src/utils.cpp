@@ -3,7 +3,6 @@
 
 Utils::Utils()
 {
-
 }
 
 long Utils::GetTime()
@@ -22,3 +21,4 @@ int Utils::GetLCDHeight()
 {
     return static_cast<int>(sf::VideoMode::getDesktopMode().height);
 }
+

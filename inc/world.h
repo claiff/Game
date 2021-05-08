@@ -5,6 +5,10 @@
 #include "mainmenustate.h"
 
 static const int FPS_RATE = 60;
+static const sf::Keyboard::Key INPUT_UP = sf::Keyboard::W;
+static const sf::Keyboard::Key INPUT_DOWN = sf::Keyboard::S;
+static const sf::Keyboard::Key INPUT_LEFT = sf::Keyboard::A;
+static const sf::Keyboard::Key INPUT_RIGHT = sf::Keyboard::D;
 
 class World
 {

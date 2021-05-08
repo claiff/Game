@@ -16,12 +16,28 @@ World::World()
 
 void World::Redraw()
 {
-    window->display();
     if(!IsRateTime())
     {
         return;
     }
+    if (sf::Keyboard::isKeyPressed(INPUT_UP))
+    {
+        m_state_game->PushUp();
+    }
+    if (sf::Keyboard::isKeyPressed(INPUT_DOWN))
+    {
+        m_state_game->PushDown();
+    }
+    if (sf::Keyboard::isKeyPressed(INPUT_LEFT))
+    {
+        m_state_game->PushLeft();
+    }
+    if (sf::Keyboard::isKeyPressed(INPUT_RIGHT))
+    {
+        m_state_game->PushRight();
+    }
     m_state_game->DrawContext();
+    window->display();
 }
 
 bool World::IsOpen()
@@ -36,3 +52,4 @@ bool World::IsRateTime()
     auto diff = time - m_prev_time;
     return diff > rate_time;
 }
+

@@ -1,42 +1,39 @@
 #include "../inc/mainmenustate.h"
 
-
 MainMenuState::MainMenuState(sf::RenderWindow* window):
     StateGame(window)
-{    
-    sf::Texture menu_new_gameT;
-    sf::Texture menu_load_gameT;
-    sf::Texture menu_exit_gameT;
-    sf::Texture menu_backT;
-    bool l;
+{
+    //Надпись Главное меню
+    m_menu_new_gameT.loadFromFile("../Texture/Menu/111.png");
+    m_menu_new_gameS.setTexture(m_menu_new_gameT);
 
-//    l = menu_new_gameT.loadFromFile("../Texture/Menu/111.png");
-//    sf::Sprite menu_new_gameS(menu_new_gameT);
+    //Надпись Загрузить
+    m_menu_load_gameT.loadFromFile("../Texture/Menu/333.png");
+    m_menu_load_gameS.setTexture(m_menu_load_gameT);
 
-//    l = menu_load_gameT.loadFromFile("../Texture/Menu/333.png");
-//    sf::Sprite menu_load_gameS(menu_load_gameT);
+    //Надпись Выход
+    m_menu_exit_gameT.loadFromFile("../Texture/Menu/222.png");
+    m_menu_exit_gameS.setTexture(m_menu_exit_gameT);
 
-//    l = menu_exit_gameT.loadFromFile("../Texture/Menu/222.png");
-//    sf::Sprite menu_exit_gameS(menu_exit_gameT);
+    //Текстура заднего фона
+    menu_backT.loadFromFile("../Texture/Menu/main.png");
+    m_menu_backS.setTexture(menu_backT);
 
-    l = menu_backT.loadFromFile("../Texture/Menu/main.png");
-    sf::Sprite menu_backS(menu_backT);
+    //Надписи располагаем
+    m_menu_new_gameS.setPosition(100,30);
+    m_menu_load_gameS.setPosition(100,90);
+    m_menu_exit_gameS.setPosition(100,150);
 
-//    menu_new_gameS.setPosition(100,30);
-//    menu_load_gameS.setPosition(100,90);
-//    menu_exit_gameS.setPosition(100,150);
+    //Растянем главное меню во весь экран
+    m_menu_backS.setScale(m_window->getSize().x / m_menu_backS.getLocalBounds().width,
+                   m_window->getSize().y / m_menu_backS.getLocalBounds().height);
 
+    //Запихнем надписи в вектор чтоб их переключать
+    m_menu_array.push_back(m_menu_new_gameS);
+    m_menu_array.push_back(m_menu_load_gameS);
+    m_menu_array.push_back(m_menu_exit_gameS);
 
-    menu_backS.setScale(m_window->getSize().x / menu_backS.getLocalBounds().width,
-                   m_window->getSize().y / menu_backS.getLocalBounds().height);
-
-//    m_menu_array.push_back(menu_new_gameS);
-//    m_menu_array.push_back(menu_load_gameS);
-//    m_menu_array.push_back(menu_exit_gameS);
-
-    m_window->draw(menu_backS);
-    m_window->display();
-    m_pos_menu = 0;
+    ResetMenu();
 }
 
 MainMenuState::~MainMenuState()
@@ -46,39 +43,90 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::DrawContext()
 {
-//    if(m_window->isOpen())
-//    {
-//        sf::Event event;
-//        //m_window->display();
-//        while (m_window->pollEvent(event))
-//        {
-//            // Пользователь нажал на «крестик» и хочет закрыть окно?
-//            if (event.type == sf::Event::Closed)
-//                // тогда закрываем его
-//                m_window->close();
-//        }
-//    }
+    //Рисуем задний фон
+    m_window->draw(m_menu_backS);
+
+    //Рисуем все надписи
+    for (const auto legend: m_menu_array)
+    {
+        m_window->draw(legend);
+    }
+}
+
+bool MainMenuState::IsTimePressButton(long& prev_time)
+{
+    auto curr_time = Utils::GetTime();
+    //Проверка чтоб выбор меню не был слишком быстрым
+
+    if(curr_time > prev_time + FREEZE_TIME)
+    {
+        prev_time = curr_time;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void MainMenuState::PushUp()
 {
+    //Цыганский фокус чтоб при первом нажатии сразу сработал и prev_time != curr_time
+    static auto prev_time = Utils::GetTime() - FREEZE_TIME;
 
+    if(IsTimePressButton(prev_time))
+    {
+        DecMenu();
+    }
 }
 
 void MainMenuState::PushDown()
 {
-//    m_pos_menu++;
-//    if(m_pos_menu > m_menu_array.size())
-//        m_pos_menu = 0;
+    //Цыганский фокус чтоб при первом нажатии сразу сработал и prev_time != curr_time
+    static auto prev_time = Utils::GetTime() - FREEZE_TIME;
 
+    auto curr_time = Utils::GetTime();
+    //Проверка чтоб выбор меню не был слишком быстрым
+    if(IsTimePressButton(prev_time))
+    {
+        IncMenu();
+    }
 }
 
-void MainMenuState::PushLeft()
+void MainMenuState::PushLeft(){}
+
+void MainMenuState::PushRight(){}
+
+void MainMenuState::ResetMenu()
+{
+    m_pos_menu = 0;
+    m_menu_array[m_pos_menu].setColor(ACTIVE_MENU_COLOR);
+}
+
+void MainMenuState::IncMenu()
+{
+    m_menu_array[m_pos_menu].setColor(UNACTIVE_MENU_COLOR);
+    m_pos_menu++;
+    if(m_pos_menu >= m_menu_array.size())
+    {
+        m_pos_menu = 0;
+    }
+    m_menu_array[m_pos_menu].setColor(ACTIVE_MENU_COLOR);
+}
+
+void MainMenuState::DecMenu()
+{
+    m_menu_array[m_pos_menu].setColor(UNACTIVE_MENU_COLOR);
+    m_pos_menu--;
+    if(m_pos_menu < 0)
+    {
+        m_pos_menu = m_menu_array.size() - 1;
+    }
+    m_menu_array[m_pos_menu].setColor(ACTIVE_MENU_COLOR);
+}
+
+void MainMenuState::SetMenu()
 {
 
 }
 
-void MainMenuState::PushRight()
-{
-
-}
