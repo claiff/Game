@@ -14,6 +14,7 @@ public:
     virtual void PushDown() = 0;
     virtual void PushLeft() = 0;
     virtual void PushRight() = 0;
+    virtual void PushUse() = 0;
 protected:
     sf::RenderWindow* m_window;
 };

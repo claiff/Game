@@ -36,6 +36,10 @@ void World::Redraw()
     {
         m_state_game->PushRight();
     }
+    if (sf::Keyboard::isKeyPressed(INPUT_USE))
+    {
+        m_state_game->PushRight();
+    }
     m_state_game->DrawContext();
     window->display();
 }

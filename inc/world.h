@@ -9,6 +9,7 @@ static const sf::Keyboard::Key INPUT_UP = sf::Keyboard::W;
 static const sf::Keyboard::Key INPUT_DOWN = sf::Keyboard::S;
 static const sf::Keyboard::Key INPUT_LEFT = sf::Keyboard::A;
 static const sf::Keyboard::Key INPUT_RIGHT = sf::Keyboard::D;
+static const sf::Keyboard::Key INPUT_USE = sf::Keyboard::Space;
 
 class World
 {

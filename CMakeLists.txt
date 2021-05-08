@@ -15,7 +15,8 @@ set(SOURCES
     src/stategame.cpp
     src/mainmenustate.cpp
     src/utils.cpp
-    )
+    src/Font.cpp
+    src/FontZelda.cpp)
 set(INCLUDE
     inc/weapon.h
     inc/w_pistol.h
@@ -24,7 +25,8 @@ set(INCLUDE
     inc/stategame.h
     inc/mainmenustate.h
     inc/utils.h
-    )
+    inc/Font.h
+    inc/FontZelda.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDE})
 
