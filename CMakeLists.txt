@@ -9,24 +9,30 @@ include_directories(SFML/include)
 set(SOURCES
     src/main.cpp
     src/weapon.cpp
-    src/w_pistol.cpp
     src/player.cpp
     src/world.cpp
-    src/stategame.cpp
-    src/mainmenustate.cpp
+    src/state_game.cpp
+    src/main_menu_state.cpp
     src/utils.cpp
-    src/Font.cpp
-    src/FontZelda.cpp)
+    src/font.cpp
+    src/font_zelda.cpp
+    src/load_game_state.cpp
+    src/main_level_state.cpp
+    src/decorator_font.cpp
+    src/font_back_decorator.cpp)
 set(INCLUDE
     inc/weapon.h
-    inc/w_pistol.h
     inc/player.h
     inc/world.h
-    inc/stategame.h
-    inc/mainmenustate.h
+    inc/state_game.h
+    inc/main_menu_state.h
     inc/utils.h
-    inc/Font.h
-    inc/FontZelda.h)
+    inc/font.h
+    inc/font_zelda.h
+    inc/main_level_state.h
+    inc/load_game_state.h
+    inc/decorator_font.h
+    inc/font_back_decorator.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDE})
 

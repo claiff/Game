@@ -2,7 +2,7 @@
 #define WORLD_H
 
 #include "memory"
-#include "mainmenustate.h"
+#include "state_game.h"
 
 static const int FPS_RATE = 60;
 static const sf::Keyboard::Key INPUT_UP = sf::Keyboard::W;
@@ -17,13 +17,13 @@ public:
     World();
     void Redraw();
     bool IsOpen();
+    void ChangeState(StateGame *newState);
 private:
+    StateGame *m_state_game;
     long m_prev_time;
     std::shared_ptr<sf::RenderWindow> window;
-    StateGame *m_state_game;
 
-    long GetTime();
-    bool IsRateTime();
+    bool IsRateTime() const;
 };
 
 #endif // WORLD_H
