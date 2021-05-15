@@ -13,29 +13,26 @@ World::World()
     window = std::make_shared<sf::RenderWindow>(sf::VideoMode(GAME_WIDTH, GAME_HEIGHT), "SFML works!");
     window->setPosition(tempCenter);
     m_state_game = MainMenuState::GetInstance(window.get());
+    window->setFramerateLimit(FPS_RATE);
 };
 
 void World::Redraw()
 {
-    if(!IsRateTime())
-    {
-        return;
-    }
     if (sf::Keyboard::isKeyPressed(INPUT_UP))
     {
         m_state_game->PushUp(this);
     }
     if (sf::Keyboard::isKeyPressed(INPUT_DOWN))
     {
-        m_state_game->PushDown();
+        m_state_game->PushDown(this);
     }
     if (sf::Keyboard::isKeyPressed(INPUT_LEFT))
     {
-        m_state_game->PushLeft();
+        m_state_game->PushLeft(this);
     }
     if (sf::Keyboard::isKeyPressed(INPUT_RIGHT))
     {
-        m_state_game->PushRight();
+        m_state_game->PushRight(this);
     }
     if (sf::Keyboard::isKeyPressed(INPUT_USE))
     {
@@ -50,17 +47,9 @@ bool World::IsOpen()
     return window->isOpen();
 }
 
-bool World::IsRateTime() const
+void World::ChangeState(std::shared_ptr<StateGame> newState)
 {
-    auto time = Utils::GetTime();
-    auto rate_time = 1000 / FPS_RATE;
-    auto diff = time - m_prev_time;
-    return diff > rate_time;
-}
-
-void World::ChangeState(StateGame *newState)
-{
-    m_state_game = newState;
+    m_state_game = std::move(newState);
 }
 
 

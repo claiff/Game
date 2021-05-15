@@ -4,6 +4,7 @@
 #include "memory"
 #include "state_game.h"
 
+
 static const int FPS_RATE = 60;
 static const sf::Keyboard::Key INPUT_UP = sf::Keyboard::W;
 static const sf::Keyboard::Key INPUT_DOWN = sf::Keyboard::S;
@@ -17,13 +18,11 @@ public:
     World();
     void Redraw();
     bool IsOpen();
-    void ChangeState(StateGame *newState);
+    void ChangeState(std::shared_ptr<StateGame> newState);
 private:
-    StateGame *m_state_game;
+    std::shared_ptr<StateGame> m_state_game;
     long m_prev_time;
     std::shared_ptr<sf::RenderWindow> window;
-
-    bool IsRateTime() const;
 };
 
 #endif // WORLD_H

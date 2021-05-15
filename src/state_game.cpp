@@ -2,11 +2,10 @@
 // Created by claiff on 5/15/21.
 //
 
-#include "state_game.h"
+#include "../inc/main_menu_state.h"
+#include "../inc/state_game.h"
 
-StateGame::StateGame()
-{
-}
+StateGame::StateGame(sf::RenderWindow *window):m_window(window){}
 
 StateGame::~StateGame()
 {
