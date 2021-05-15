@@ -1,4 +1,4 @@
-/build
-/SFML
-/Texture
-.directory
+*.*
+!*.h
+!*.cpp
+!CMakeLists.txt
