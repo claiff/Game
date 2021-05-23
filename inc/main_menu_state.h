@@ -7,12 +7,13 @@
 
 #include "state_game.h"
 #include "font.h"
+#include "decorator_font.h"
 #include "memory"
 
 static const char *const PATH_MAIN_BACK = "../Texture/Menu/main.png";
 static const sf::Color UN_ACTIVE_COLOR = sf::Color::White;
 static const sf::Color ACTIVE_COLOR = sf::Color::Red;
-
+static const sf::Vector2<int> MENU_COORDINATE = {200,140};
 
 class MainMenuState : public StateGame
 {
@@ -24,15 +25,34 @@ public:
     void PushLeft(World *world) override;
     void PushRight(World *world) override;
     void PushUse(World *world) override;
+
+    void RealizeDown(World *world) override;
+
+    void RealizeRight(World *world) override;
+
+    void RealizeLeft(World *world) override;
+
+    void RealizeUp(World *world) override;
+
     void DrawContext() override;
     virtual ~MainMenuState();
 private:
-    static std::shared_ptr<MainMenuState> mInstance;
-    std::shared_ptr<Font> m_font;
-    std::vector<std::pair<std::string, sf::Color>> text_and_color;
     void DrawMainBack();
 
-    void AddTextAndColor(const std::string &text, const sf::Color &color);
+    static std::shared_ptr<MainMenuState> mInstance;
+    std::shared_ptr<DecoratorFont> mDecoratorFont;
+    std::vector<std::pair<std::string, sf::Color>> m_text_and_color;
+    int8_t mPosition;
+
+    void ResetPosition();
+
+    void SetPosition();
+
+    void SetText(const std::string &text);
+
+    void IncrementPosition();
+
+    void DecrementPosition();
 };
 
 

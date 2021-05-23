@@ -13,7 +13,7 @@ Font::~Font()
 
 }
 
-sf::Rect<float> Font::GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, float x, float y)
+sf::Rect<int> Font::GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y)
 {
-    return sf::Rect<float>();
+    return sf::Rect<int>();
 }

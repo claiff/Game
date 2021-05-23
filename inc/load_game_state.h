@@ -5,10 +5,27 @@
 #ifndef TESTGAME_LOAD_GAME_STATE_H
 #define TESTGAME_LOAD_GAME_STATE_H
 
+#include "state_game.h"
 
-class load_game_state
+class LoadGameState : public StateGame
 {
+public:
+    LoadGameState(sf::RenderWindow *window);
+    static std::shared_ptr<LoadGameState> GetInstance(sf::RenderWindow *window);
+    void PushUp(World *world) override;
+    void RealizeUp(World *world) override;
+    void PushDown(World *world) override;
+    void RealizeDown(World *world) override;
+    void PushLeft(World *world) override;
+    void RealizeLeft(World *world) override;
+    void PushRight(World *world) override;
+    void RealizeRight(World *world) override;
+    void PushUse(World *world) override;
+    void DrawContext() override;
+    virtual ~LoadGameState();
 
+private:
+    static std::shared_ptr<LoadGameState> mInstance;
 };
 
 

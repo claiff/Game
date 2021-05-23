@@ -31,27 +31,48 @@ FontZelda::FontZelda()
     AddCharInfo('L', 177, 0, 6);
     AddCharInfo('l', 186, 0, 3);
     AddCharInfo('M', 192, 0, 8);
-    AddCharInfo('m', 200, 0, 208);
+    AddCharInfo('m', 200, 0, 8);
     AddCharInfo('N', 0, 16, 8);
     AddCharInfo('n', 9, 16, 5);
     AddCharInfo('O', 17, 16, 6);
     AddCharInfo('o', 25, 16, 6);
     AddCharInfo('P', 33, 16, 6);
     AddCharInfo('p', 41, 16, 6);
+    AddCharInfo('Q', 49, 16, 6);
+    AddCharInfo('q', 57, 16, 6);
+    AddCharInfo('R', 65, 16, 6);
+    AddCharInfo('r', 73, 16, 6);
+    AddCharInfo('S', 81, 16, 6);
+    AddCharInfo('s', 90, 16, 4);
+    AddCharInfo('T', 96, 16, 8);
+    AddCharInfo('t', 106, 16, 4);
+    AddCharInfo('U', 112, 16, 8);
+    AddCharInfo('u', 122, 16, 5);
+    AddCharInfo('V', 128, 16, 8);
+    AddCharInfo('v', 137, 16, 6);
+    AddCharInfo('W', 144, 16, 8);
+    AddCharInfo('w', 152, 16, 7);
+    AddCharInfo('X', 161, 16, 6);
+    AddCharInfo('x', 169, 16, 5);
+    AddCharInfo('Y', 177, 16, 6);
+    AddCharInfo('y', 185, 16, 5);
+    AddCharInfo('Z', 192, 16, 8);
+    AddCharInfo('z', 202, 16, 4);
+    AddCharInfo(' ', 206, 16, SPACE_WIDTH);
 }
 
-void FontZelda::AddCharInfo(char letter, float x, float y, uint8_t size)
+void FontZelda::AddCharInfo(char letter, int x, int y, uint8_t size)
 {
     mCharInfo[letter].x = x;
     mCharInfo[letter].y = y;
     mCharInfo[letter].size = size;
 }
 
-void FontZelda::DrawText(sf::RenderWindow *window, const std::string &text, sf::Color color, float x, float y)
+void FontZelda::DrawText(sf::RenderWindow *window, const std::string &text, sf::Color color, int x, int y)
 {
     sf::Texture mainBackT;
     sf::Sprite mainBackS;
-    float letter_shift = 0;
+    int letter_shift = 0;
     mainBackT.loadFromFile("../Texture/Menu/font.png");
     mainBackS.setTexture(mainBackT);
 
@@ -62,22 +83,51 @@ void FontZelda::DrawText(sf::RenderWindow *window, const std::string &text, sf::
         auto size = mCharInfo[letter].size;
 
         mainBackS.setTextureRect(sf::IntRect(letter_x , letter_y, size, LETTER_HEIGHT));
-        mainBackS.setPosition(x + letter_shift, y);
+        mainBackS.setPosition(static_cast<float>(x + letter_shift), static_cast<float>(y));
         mainBackS.setScale(SCALE_FACTOR, SCALE_FACTOR);
+        mainBackS.setColor(color);
 
         window->draw(mainBackS);
         letter_shift += size * SCALE_FACTOR + SHIFT_LETTER;
     }
 }
 
-void FontZelda::DrawMultiText(sf::RenderWindow *window, const std::vector<std::pair<std::string, sf::Color>> &text_color, float x, float y)
+void FontZelda::DrawMultiText(sf::RenderWindow *window, const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y)
 {
     auto local_y = y;
-    for(auto line_text : text_color)
+    for(const auto& line_text : text_color)
     {
         auto text = line_text.first;
         auto color = line_text.second;
         DrawText(window, text, color, x, local_y);
         local_y += LINE_HEIGHT;
     }
+}
+
+sf::Rect<int> FontZelda::GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y)
+{
+    int height = 0;
+    int width = 0;
+
+    for(auto& line : text_color)
+    {
+        auto temp_width = GetSizeText(line);
+        if(temp_width > width)
+        {
+            width = temp_width;
+        }
+        height += LINE_HEIGHT;
+    }
+    return {x, y, width, height};
+}
+
+int FontZelda::GetSizeText(const std::pair<std::string, sf::Color> &line) 
+{
+    int size = 0;
+    for(auto& letter : line.first)
+    {
+        size += mCharInfo[letter].size * SCALE_FACTOR;
+        size += SHIFT_LETTER;
+    }
+    return size;
 }

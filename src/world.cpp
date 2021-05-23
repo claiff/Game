@@ -18,23 +18,43 @@ World::World()
 
 void World::Redraw()
 {
-    if (sf::Keyboard::isKeyPressed(INPUT_UP))
+    sf::Event event;
+    window->pollEvent(event);
+    if (event.type == sf::Event::KeyReleased && event.key.code == INPUT_UP)
+    {
+        m_state_game->RealizeUp(this);
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == INPUT_DOWN)
+    {
+        m_state_game->RealizeDown(this);
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == INPUT_LEFT)
+    {
+        m_state_game->RealizeLeft(this);
+    }
+    if (event.type == sf::Event::KeyReleased && event.key.code == INPUT_RIGHT)
+    {
+        m_state_game->RealizeRight(this);
+    }
+
+    if (event.type == sf::Event::KeyPressed && event.key.code == INPUT_UP)
     {
         m_state_game->PushUp(this);
     }
-    if (sf::Keyboard::isKeyPressed(INPUT_DOWN))
+    if (event.type == sf::Event::KeyPressed && event.key.code == INPUT_DOWN)
     {
         m_state_game->PushDown(this);
     }
-    if (sf::Keyboard::isKeyPressed(INPUT_LEFT))
+    if (event.type == sf::Event::KeyPressed && event.key.code == INPUT_LEFT)
     {
         m_state_game->PushLeft(this);
     }
-    if (sf::Keyboard::isKeyPressed(INPUT_RIGHT))
+    if (event.type == sf::Event::KeyPressed && event.key.code == INPUT_RIGHT)
     {
         m_state_game->PushRight(this);
     }
-    if (sf::Keyboard::isKeyPressed(INPUT_USE))
+
+    if (event.type == sf::Event::KeyPressed && event.key.code == INPUT_USE)
     {
         m_state_game->PushUse(this);
     }

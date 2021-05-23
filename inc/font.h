@@ -13,9 +13,9 @@ class Font
 {
 public:
     Font();
-    virtual void DrawText(sf::RenderWindow *window, const std::string &text, sf::Color color, float x, float y) = 0;
-    virtual void DrawMultiText(sf::RenderWindow *window, const std::vector<std::pair<std::string, sf::Color> > &text_color, float x, float y) = 0;
-    virtual sf::Rect<float> GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, float x, float y);
+    virtual void DrawText(sf::RenderWindow *window, const std::string &text, sf::Color color, int x, int y) = 0;
+    virtual void DrawMultiText(sf::RenderWindow *window, const std::vector<std::pair<std::string, sf::Color> > &text_color, int x, int y) = 0;
+    virtual sf::Rect<int> GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y);
     virtual ~Font();
 };
 
