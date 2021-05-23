@@ -19,7 +19,9 @@ set(SOURCES
     src/load_game_state.cpp
     src/main_level_state.cpp
     src/decorator_font.cpp
-    src/font_back_decorator.cpp)
+    src/font_back_decorator.cpp
+    src/sound.cpp
+    src/main_menu_sound.cpp)
 set(INCLUDE
     inc/weapon.h
     inc/player.h
@@ -32,11 +34,13 @@ set(INCLUDE
     inc/main_level_state.h
     inc/load_game_state.h
     inc/decorator_font.h
-    inc/font_back_decorator.h)
+    inc/font_back_decorator.h
+    inc/sound.h
+    inc/main_menu_sound.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDE})
 
 add_subdirectory(SFML)
-target_link_libraries(${PROJECT_NAME} sfml-graphics)
+target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)
 
 

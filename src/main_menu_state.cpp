@@ -8,9 +8,25 @@
 #include "../inc/main_level_state.h"
 #include "../inc/world.h"
 #include "../inc/font_back_decorator.h"
+#include "../inc/main_menu_sound.h"
+
 std::shared_ptr<MainMenuState> MainMenuState::mInstance = nullptr;
 
 MainMenuState::MainMenuState(sf::RenderWindow *window) : StateGame(window)
+{
+    SetupMusic();
+    SetupFont();
+}
+
+void MainMenuState::SetupMusic()
+{
+    mSound = std::make_shared<MainMenuSound>(MUSIC_PATH);
+    mSound->SetLoop(true);
+    mSound->SetVolume(MUSIC_VOLUME);
+    mSound->PlaySound();
+}
+
+void MainMenuState::SetupFont()
 {
     mDecoratorFont = std::make_shared<FontBackDecorator>(new FontZelda());
     SetText("New Game");
@@ -99,6 +115,7 @@ void MainMenuState::IncrementPosition()
 
 void MainMenuState::PushUse(World *world)
 {
+    mSound->StopSound();
     switch (mPosition)
     {
         case 0:

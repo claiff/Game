@@ -5,7 +5,6 @@
 #ifndef TESTGAME_FONT_BACK_DECORATOR_H
 #define TESTGAME_FONT_BACK_DECORATOR_H
 
-
 #include "decorator_font.h"
 
 class FontBackDecorator : public DecoratorFont

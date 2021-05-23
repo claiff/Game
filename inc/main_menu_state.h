@@ -9,11 +9,16 @@
 #include "font.h"
 #include "decorator_font.h"
 #include "memory"
+#include "sound.h"
 
 static const char *const PATH_MAIN_BACK = "../Texture/Menu/main.png";
 static const sf::Color UN_ACTIVE_COLOR = sf::Color::White;
 static const sf::Color ACTIVE_COLOR = sf::Color::Red;
 static const sf::Vector2<int> MENU_COORDINATE = {200,140};
+
+static const int MUSIC_VOLUME = 40;
+
+static const char *const MUSIC_PATH = "../music/Nintendo - The Legend Of Zelda Theme Song.wav";
 
 class MainMenuState : public StateGame
 {
@@ -41,6 +46,7 @@ private:
 
     static std::shared_ptr<MainMenuState> mInstance;
     std::shared_ptr<DecoratorFont> mDecoratorFont;
+    std::shared_ptr<Sound> mSound;
     std::vector<std::pair<std::string, sf::Color>> m_text_and_color;
     int8_t mPosition;
 
@@ -53,6 +59,10 @@ private:
     void IncrementPosition();
 
     void DecrementPosition();
+
+    void SetupMusic();
+
+    void SetupFont();
 };
 
 

@@ -3,7 +3,14 @@
 //
 
 #include "../inc/font_back_decorator.h"
+
 static const int BORDER_WIDTH = 20;
+static const int BACK_WIDTH = 240;
+static const int BACK_HEIGHT = 71;
+static const int BACK_X = 0;
+static const int BACK_Y = 49;
+static const char *const FONT_PATH = "../Texture/Menu/font.png";
+
 FontBackDecorator::FontBackDecorator(Font *font) : DecoratorFont(font)
 {
 }
@@ -18,10 +25,10 @@ void FontBackDecorator::DrawMultiText(sf::RenderWindow *window, const std::vecto
     auto rect = m_font->GetSizeMultiText(text_color, x, y);
     sf::Texture mainBackT;
     sf::Sprite mainBackS;
-    mainBackT.loadFromFile("../Texture/Menu/font.png");
+    mainBackT.loadFromFile(FONT_PATH);
     mainBackS.setTexture(mainBackT);
 
-    mainBackS.setTextureRect(sf::IntRect(0 , 49, 240, 71));
+    mainBackS.setTextureRect(sf::IntRect(BACK_X, BACK_Y, BACK_WIDTH, BACK_HEIGHT));
 
     auto pos = GetPosition(rect);
     auto scale = GetFactorScale(rect);
@@ -34,8 +41,8 @@ void FontBackDecorator::DrawMultiText(sf::RenderWindow *window, const std::vecto
 
 std::pair<float, float> FontBackDecorator::GetFactorScale(const sf::Rect<int> &rect) const
 {
-    auto scale_x = static_cast<float>(rect.width + BORDER_WIDTH * 2) / 240;
-    auto scale_y = static_cast<float>(rect.height + BORDER_WIDTH * 2) / 71;
+    auto scale_x = static_cast<float>(rect.width + BORDER_WIDTH * 2) / BACK_WIDTH;
+    auto scale_y = static_cast<float>(rect.height + BORDER_WIDTH * 2) / BACK_HEIGHT;
     return {scale_x, scale_y};
 }
 
