@@ -4,9 +4,11 @@
 
 #ifndef TESTGAME_MAIN_LEVEL_STATE_H
 #define TESTGAME_MAIN_LEVEL_STATE_H
-
+//TODO comment
+//TODO Проверить include
 #include "state_game.h"
-
+#include "level_factory.h"
+#include "level_builder.h"
 class MainLevelState : public StateGame
 {
 public:
@@ -26,6 +28,8 @@ public:
 
 private:
     static std::shared_ptr<MainLevelState> mInstance;
+    LevelFactoryPtr mLevelFactory;
+    LevelBuilderPtr mLevelBuilder;
 };
 
 

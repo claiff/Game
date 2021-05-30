@@ -1,6 +1,7 @@
 #ifndef WEAPON_H
 #define WEAPON_H
-
+//TODO comment
+//TODO Проверить include
 
 class Weapon
 {

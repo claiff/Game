@@ -7,7 +7,8 @@
 
 #include "SFML/Graphics.hpp"
 #include "memory"
-
+//TODO comment
+//TODO Проверить include
 class World;
 class StateGame
 {

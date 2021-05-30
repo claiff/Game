@@ -3,7 +3,8 @@
 
 #include "memory"
 #include "state_game.h"
-
+//TODO comment
+//TODO Проверить include
 
 static const int FPS_RATE = 60;
 static const sf::Keyboard::Key INPUT_UP = sf::Keyboard::W;

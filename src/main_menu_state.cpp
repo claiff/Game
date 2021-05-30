@@ -28,7 +28,8 @@ void MainMenuState::SetupMusic()
 
 void MainMenuState::SetupFont()
 {
-    mDecoratorFont = std::make_shared<FontBackDecorator>(new FontZelda());
+    mFont = std::make_shared<FontZelda>();
+    mDecoratorFont = std::make_shared<FontBackDecorator>(mFont);
     SetText("New Game");
     SetText("Load Game");
     SetText("Exit");

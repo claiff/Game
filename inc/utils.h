@@ -2,7 +2,8 @@
 #define UTILS_H
 
 #include <SFML/Graphics.hpp>
-
+//TODO comment
+//TODO Проверить include
 class Utils
 {
 public:

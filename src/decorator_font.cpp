@@ -4,8 +4,8 @@
 
 #include "../inc/decorator_font.h"
 
-DecoratorFont::DecoratorFont(Font *font):
-        m_font(font)
+DecoratorFont::DecoratorFont(FontPtr font):
+        mFont(std::move(font))
 {
 
 }

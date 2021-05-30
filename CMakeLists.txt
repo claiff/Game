@@ -21,7 +21,18 @@ set(SOURCES
     src/decorator_font.cpp
     src/font_back_decorator.cpp
     src/sound.cpp
-    src/main_menu_sound.cpp)
+    src/main_menu_sound.cpp
+    src/level_builder.cpp
+    src/level_factory.cpp
+    src/main_level_factory.cpp
+    src/main_level_builder.cpp
+    src/level_text_reader.cpp
+    src/simple_level_text_reader.cpp
+    src/types_sprites.cpp
+    src/landscape_type.cpp
+    src/room_type.cpp
+    src/monster_type.cpp )
+
 set(INCLUDE
     inc/weapon.h
     inc/player.h
@@ -36,7 +47,17 @@ set(INCLUDE
     inc/decorator_font.h
     inc/font_back_decorator.h
     inc/sound.h
-    inc/main_menu_sound.h)
+    inc/main_menu_sound.h
+    inc/level_builder.h
+    inc/level_factory.h
+    inc/main_level_factory.h
+    inc/main_level_builder.h
+    inc/level_text_reader.h
+    inc/simple_level_text_reader.h
+    inc/types_sprites.h
+    inc/landscape_type.h
+    inc/room_type.h
+    inc/monster_type.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${INCLUDE})
 

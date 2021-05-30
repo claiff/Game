@@ -4,16 +4,7 @@
 
 #include "../inc/font.h"
 
-Font::Font()
+sf::Rect<int> Font::GetSizeMultiText(std::vector<std::pair<std::string, sf::Color>> const& text_color, int x, int y)
 {
-}
-
-Font::~Font()
-{
-
-}
-
-sf::Rect<int> Font::GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y)
-{
-    return sf::Rect<int>();
+    return {};
 }

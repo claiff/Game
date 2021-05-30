@@ -7,13 +7,15 @@
 
 #include "font.h"
 
+//TODO comment
+//TODO Проверить include
 class DecoratorFont : public Font
 {
 public:
-    DecoratorFont(Font *font);
+    DecoratorFont(FontPtr font);
 protected:
-    Font *m_font;
+    FontPtr mFont;
 };
-
+using DecoratorFontPtr = std::shared_ptr<DecoratorFont>;
 
 #endif //TESTGAME_DECORATORFONT_H

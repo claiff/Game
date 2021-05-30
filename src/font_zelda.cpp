@@ -68,7 +68,7 @@ void FontZelda::AddCharInfo(char letter, int x, int y, uint8_t size)
     mCharInfo[letter].size = size;
 }
 
-void FontZelda::DrawText(sf::RenderWindow *window, const std::string &text, sf::Color color, int x, int y)
+void FontZelda::DrawText(sf::RenderWindow *window, std::string const& text, sf::Color const& color, int x, int y)
 {
     sf::Texture mainBackT;
     sf::Sprite mainBackS;
@@ -92,7 +92,7 @@ void FontZelda::DrawText(sf::RenderWindow *window, const std::string &text, sf::
     }
 }
 
-void FontZelda::DrawMultiText(sf::RenderWindow *window, const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y)
+void FontZelda::DrawMultiText(sf::RenderWindow *window, std::vector<std::pair<std::string, sf::Color>> const& text_color, int x, int y)
 {
     auto local_y = y;
     for(const auto& line_text : text_color)
@@ -104,7 +104,7 @@ void FontZelda::DrawMultiText(sf::RenderWindow *window, const std::vector<std::p
     }
 }
 
-sf::Rect<int> FontZelda::GetSizeMultiText(const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y)
+sf::Rect<int> FontZelda::GetSizeMultiText( std::vector<std::pair<std::string, sf::Color>> const& text_color, int x, int y)
 {
     int height = 0;
     int width = 0;
@@ -121,7 +121,7 @@ sf::Rect<int> FontZelda::GetSizeMultiText(const std::vector<std::pair<std::strin
     return {x, y, width, height};
 }
 
-int FontZelda::GetSizeText(const std::pair<std::string, sf::Color> &line) 
+int FontZelda::GetSizeText( std::pair<std::string, sf::Color> const& line)
 {
     int size = 0;
     for(auto& letter : line.first)

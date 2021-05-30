@@ -6,7 +6,8 @@
 #define TESTGAME_LOAD_GAME_STATE_H
 
 #include "state_game.h"
-
+//TODO comment
+//TODO Проверить include
 class LoadGameState : public StateGame
 {
 public:

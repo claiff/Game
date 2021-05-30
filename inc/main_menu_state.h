@@ -10,7 +10,8 @@
 #include "decorator_font.h"
 #include "memory"
 #include "sound.h"
-
+//TODO comment
+//TODO Проверить include
 static const char *const PATH_MAIN_BACK = "../Texture/Menu/main.png";
 static const sf::Color UN_ACTIVE_COLOR = sf::Color::White;
 static const sf::Color ACTIVE_COLOR = sf::Color::Red;
@@ -45,7 +46,8 @@ private:
     void DrawMainBack();
 
     static std::shared_ptr<MainMenuState> mInstance;
-    std::shared_ptr<DecoratorFont> mDecoratorFont;
+    DecoratorFontPtr mDecoratorFont;
+    FontPtr mFont;
     std::shared_ptr<Sound> mSound;
     std::vector<std::pair<std::string, sf::Color>> m_text_and_color;
     int8_t mPosition;

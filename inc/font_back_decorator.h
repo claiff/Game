@@ -6,21 +6,17 @@
 #define TESTGAME_FONT_BACK_DECORATOR_H
 
 #include "decorator_font.h"
-
+//TODO comment
+//TODO Проверить include
 class FontBackDecorator : public DecoratorFont
 {
 public:
-    FontBackDecorator(Font *font);
-
-    void DrawText(sf::RenderWindow *window, const std::string &text, sf::Color color, int x, int y) override;
-
-    void DrawMultiText(sf::RenderWindow *window, const std::vector<std::pair<std::string, sf::Color>> &text_color, int x, int y) override;
-
-    virtual ~FontBackDecorator();
-
-    std::pair<float, float> GetPosition(const sf::Rect<int> &rect) const;
-
-    std::pair<float, float> GetFactorScale(const sf::Rect<int> &rect) const;
+    FontBackDecorator(FontPtr const& font);
+    virtual ~FontBackDecorator() = default;
+    void DrawText(sf::RenderWindow *window, std::string const& text, sf::Color const& color, int x, int y) override;
+    void DrawMultiText(sf::RenderWindow *window,  std::vector<std::pair<std::string, sf::Color>> const& text_color, int x, int y) override;
+    static std::pair<float, float> GetPosition(sf::Rect<int> const& rect) ;
+    static std::pair<float, float> GetFactorScale(sf::Rect<int> const& rect) ;
 };
 
 
